@@ -56,8 +56,8 @@ export class RegisterUserUseCase implements UseCase<RegisterUserDTO, RegisterUse
     }
 
     const user = userOrError.getValue();
-
     await this.userRepository.save(user);
+    console.log("Successfully saved user");
     await this.emailService.sendConfirmationEmail(email.value);
 
     return Result.ok<User>(user);
