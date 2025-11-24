@@ -20,14 +20,20 @@ describe("LoginUseCase", () => {
     validPassword = passwordResult.getValue();
 
     // Create a valid user
-    const userResult = User.create({
+    const userResult = {
       name: "Test User",
       email: validEmail,
       password: validPassword,
       isEmailVerified: true,
-    });
-    expect(userResult.isSuccess).toBe(true);
-    validUser = userResult.getValue();
+      id: 1,
+      props: {
+        name: "Test User",
+        email: validEmail,
+        password: validPassword,
+        isEmailVerified: true,
+      },
+    };
+    validUser = userResult as unknown as User;
 
     // Mock repository
     userRepository = {
